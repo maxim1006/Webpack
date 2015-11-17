@@ -1,0 +1,71 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'repo',
+1 verbose cli   'noerrorsplugin' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.1
+4 silly mapToRegistry name noerrorsplugin
+5 silly mapToRegistry using default registry
+6 silly mapToRegistry registry https://registry.npmjs.org/
+7 silly mapToRegistry uri https://registry.npmjs.org/noerrorsplugin
+8 verbose request uri https://registry.npmjs.org/noerrorsplugin/latest
+9 verbose request no auth needed
+10 info attempt registry request try #1 at 9:55:20 PM
+11 verbose request id ecbe5eb72bf85d17
+12 http request GET https://registry.npmjs.org/noerrorsplugin/latest
+13 http 404 https://registry.npmjs.org/noerrorsplugin/latest
+14 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+14 verbose headers   'content-type': 'application/json',
+14 verbose headers   'cache-control': 'max-age=0',
+14 verbose headers   'content-length': '51',
+14 verbose headers   'accept-ranges': 'bytes',
+14 verbose headers   date: 'Sun, 01 Nov 2015 18:55:20 GMT',
+14 verbose headers   via: '1.1 varnish',
+14 verbose headers   age: '0',
+14 verbose headers   connection: 'keep-alive',
+14 verbose headers   'x-served-by': 'cache-lcy1124-LCY',
+14 verbose headers   'x-cache': 'MISS',
+14 verbose headers   'x-cache-hits': '0',
+14 verbose headers   'x-timer': 'S1446404120.008284,VS0,VE92' }
+15 silly get cb [ 404,
+15 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+15 silly get     'content-type': 'application/json',
+15 silly get     'cache-control': 'max-age=0',
+15 silly get     'content-length': '51',
+15 silly get     'accept-ranges': 'bytes',
+15 silly get     date: 'Sun, 01 Nov 2015 18:55:20 GMT',
+15 silly get     via: '1.1 varnish',
+15 silly get     age: '0',
+15 silly get     connection: 'keep-alive',
+15 silly get     'x-served-by': 'cache-lcy1124-LCY',
+15 silly get     'x-cache': 'MISS',
+15 silly get     'x-cache-hits': '0',
+15 silly get     'x-timer': 'S1446404120.008284,VS0,VE92' } ]
+16 verbose stack Error: 404 Not Found: noerrorsplugin
+16 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+16 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:250:14)
+16 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+16 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:198:22)
+16 verbose stack     at emitTwo (events.js:87:13)
+16 verbose stack     at Request.emit (events.js:172:7)
+16 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1063:14)
+16 verbose stack     at emitOne (events.js:82:20)
+16 verbose stack     at Request.emit (events.js:169:7)
+16 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1009:12)
+17 verbose statusCode 404
+18 verbose pkgid noerrorsplugin
+19 verbose cwd C:\Projects\Webpack
+20 error Windows_NT 6.1.7601
+21 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "repo" "noerrorsplugin"
+22 error node v4.2.1
+23 error npm  v2.14.7
+24 error code E404
+25 error 404 Not Found: noerrorsplugin
+25 error 404
+25 error 404 'noerrorsplugin' is not in the npm registry.
+25 error 404 You should bug the author to publish it (or use the name yourself!)
+25 error 404
+25 error 404 Note that you can also install from a
+25 error 404 tarball, folder, http url, or git url.
+26 verbose exit [ 1, true ]
