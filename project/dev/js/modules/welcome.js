@@ -9,7 +9,7 @@ export default function welcome(msg) {
     if (NODE_ENV === "development") {
         console.log(msg);
     }
-
+    //debugger;запускает дебаг в этой строке
     console.log(`Welcome ${msg}`);
 };
 

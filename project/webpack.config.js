@@ -1,5 +1,7 @@
 "use strict";
 
+var path = require("path");
+
 //node-static - модуль для запуска статического сервера командой static & в данной директории
 
 //webpack --display-modules -v - подробная инфа о модулях
@@ -13,9 +15,10 @@ let NODE_ENV = process.env.NODE_ENV || "development";
 const webpack = require("webpack");
 
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
-let css = require("./dev/styles/main.less");
+//let css = require("./dev/styles/main.less");
 
 console.log(NODE_ENV);
+console.log(NODE_ENV == "development");
 
 //module.exports может экспорировать массив из набора разных модулей module.exports = [{},{}...]
 
@@ -23,28 +26,28 @@ console.log(NODE_ENV);
 module.exports =
 
     {
-        context: __dirname + '/dev/js/modules', //указываю абсолютный путь для entry, чтобы там каждый раз не писать
+        context: path.resolve(__dirname + '/dev/js/modules'), //указываю абсолютный путь для entry, чтобы там каждый раз не писать
 
         /*Если тут еще подключу welcome - модуль, который requirят, то будет ошибка так как нельзя подключать зависимости в entry, чтобы обойти делаю в welcome require, от нового модуля, в котором будет логика welcome)*/
         entry: {
-            home: "./home.js",
+            home: "./home.js",//это точка входа, может быть несколько
             about: "./about.js",//"./dev/about.js"
             //common: "./common",
             common: ["./common", "./welcome"]//если нужно в явном виде указать, что модуль welcome нужно включить в common, экспортируется только последний указанный модуль
         },
         output: {
-            path: __dirname + '/public',//тут обязательно абсолютный путь
+            path: path.resolve(__dirname + '/public'),//тут обязательно абсолютный путь
             filename: "[name].js",//name - значит возьми имя модуля на входе и дай его нового на выходе
-            library:  "[name]" //exports модуля в глобальную переменную
+            //library:  "[name]" //exports модуля в глобальную переменную, просто указываю имя модуля и оно записывается в глобальную переменную
         },
 
-        watch: NODE_ENV == "development", //вотчер, смотрит за всеми файлами
+        watch: NODE_ENV == "development", //вотчер, смотрит за всеми файлами и пересобирает при изменениях
 
         watchOptions: {
             aggregateTimeout: 100 //мс, которые вебпак ждет до того как запустить сборку
         },
 
-        devtool: NODE_ENV == "development" ? "cheap-inline-module-source-map" : null, //для дебага, нужна мапа
+        devtool: NODE_ENV == "development" ? "cheap-inline-module-source-map" : null, //для дебага, нужна мапа, devtool - опция в которой указываю какую соарс мапу подключить
 
         //подключается на разных стадиях компиляции и что-то делает
         //DefinePlugin - прокидывает переменные окружения на клиент
@@ -60,7 +63,7 @@ module.exports =
                 //minChunks: 2 //минимальное количество точек входа из которых надо вынести общую часть
                 //chunks: ['about', 'home'] //можно явно указать из каких модулей стоит вынести общую часть
             }),
-            new ExtractTextPlugin("[name].css")
+            //new ExtractTextPlugin("[name].css")
         ],
 
         //для модулей
