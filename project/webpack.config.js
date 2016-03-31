@@ -32,13 +32,14 @@ module.exports =
         entry: {
             home: "./home.js",//это точка входа, может быть несколько
             about: "./about.js",//"./dev/about.js"
+            store: "./store.js",
             //common: "./common",
-            common: ["./common", "./welcome"]//если нужно в явном виде указать, что модуль welcome нужно включить в common, экспортируется только последний указанный модуль
+            //common: ["./common", "./welcome"]//если нужно в явном виде указать, что модуль welcome нужно включить в common, экспортируется только последний указанный модуль
         },
         output: {
             path: path.resolve(__dirname + '/public'),//тут обязательно абсолютный путь
             filename: "[name].js",//name - значит возьми имя модуля на входе и дай его нового на выходе
-            //library:  "[name]" //exports модуля в глобальную переменную, просто указываю имя модуля и оно записывается в глобальную переменную
+            //library:  "имя_модуля" //exports модуля в глобальную переменную, просто указываю имя модуля и оно записывается в глобальную переменную,
         },
 
         watch: NODE_ENV == "development", //вотчер, смотрит за всеми файлами и пересобирает при изменениях
@@ -66,13 +67,13 @@ module.exports =
             //new ExtractTextPlugin("[name].css")
         ],
 
-        //для модулей
+        //описание того как обрабатывать модули (все модули)
         resolve: {
-            modulesDirectories: ['node_modules'],
+            modulesDirectories: ['node_modules'], //где искать модуль если не указан путь
             extensions:         ['', '.js']
         },
 
-        //для лоадеров
+        //описание того, как обрабатывать лоадеры
         resolveLoader: {
             modulesDirectories: ['node_modules'],
             moduleTemplates:    ['*-loader', '*'],
@@ -84,13 +85,14 @@ module.exports =
             //Лоадер - это трансформатор, получает на вход код, отдает на выходе другой код, то же с соурс мапой
             loaders: [
                 {
-                    test: /\.js$/,
+                    test: /\.js$/, //проверяю на совпадение файлов
+                    include: path.resolve(__dirname, "dev/js/modules"), //чтобы указать нужные директории в которых искать файлы (опционально)
                     loader: "babel",
                     query: {
                         // https://github.com/babel/babel-loader#options
                         //нужно чтобы заработало)
-                        cacheDirectory: true,
-                        presets: ['es2015']
+                        //cacheDirectory: true,
+                        presets: ['es2015', 'stage-0']
                     }
                 }
             ]

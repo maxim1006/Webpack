@@ -11,5 +11,6 @@ export default function welcome(msg) {
     }
     //debugger;запускает дебаг в этой строке
     console.log(`Welcome ${msg}`);
+    console.log(1234);
 };
 
