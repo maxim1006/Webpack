@@ -18,7 +18,6 @@ let ExtractTextPlugin = require("extract-text-webpack-plugin");
 //let css = require("./dev/styles/main.less");
 
 console.log(NODE_ENV);
-console.log(NODE_ENV == "development");
 
 //module.exports может экспорировать массив из набора разных модулей module.exports = [{},{}...]
 
@@ -35,6 +34,7 @@ module.exports =
             store: "./store.js",
             //common: "./common",
             //common: ["./common", "./welcome"]//если нужно в явном виде указать, что модуль welcome нужно включить в common, экспортируется только последний указанный модуль
+            //libraryTarget: "umd" //модули на выходе будут в umd
         },
         output: {
             path: path.resolve(__dirname + '/public'),//тут обязательно абсолютный путь
@@ -54,7 +54,7 @@ module.exports =
         //DefinePlugin - прокидывает переменные окружения на клиент
         plugins: [
             new webpack.NoErrorsPlugin(), //нужен для того, чтобы вебпак не создавал файлы при ошибке
-            new webpack.DefinePlugin({
+            new webpack.DefinePlugin({ //плагин нужен чтобы в файлы прокидыавть переменные и там их использовать
                 NODE_ENV: JSON.stringify(NODE_ENV),
                 LANG:     JSON.stringify("ru")
             }),
@@ -87,6 +87,7 @@ module.exports =
                 {
                     test: /\.js$/, //проверяю на совпадение файлов
                     include: path.resolve(__dirname, "dev/js/modules"), //чтобы указать нужные директории в которых искать файлы (опционально)
+                    //exclude: /(node_modules|bower_components)/, //если не ставлю include
                     loader: "babel",
                     query: {
                         // https://github.com/babel/babel-loader#options
